@@ -1,5 +1,8 @@
-# NTSpeechGrammars [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Carthage/Carthage/master/LICENSE.md)
-NTSpeechGrammars is a Objective-C Library for working with speech recognition grammars on iOS and OSX.
+# NTSpeechGrammars 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Carthage/Carthage/master/LICENSE.md)   
+
+
+**NTSpeechGrammars** is a Objective-C Library for working with speech recognition grammars on iOS and OSX.
 
 ## Features
 * Datastructures to dynamically work on grammars
