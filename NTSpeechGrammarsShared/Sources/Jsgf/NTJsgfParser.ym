@@ -1,0 +1,173 @@
+%{
+
+#import <Foundation/Foundation.h>
+#import "NTJsgfGrammar.h"
+
+int yylex(void);
+void yyerror(NTJsgfGrammar *jsgf, char *s);
+
+#define NTR(value) (__bridge_retained CFTypeRef)value
+
+#define NSSTRINGR(value) (__bridge CFTypeRef)[NSString stringWithFormat:@"%s", value]
+#define NSSTRINGT (__bridge NSString *)
+
+#define NTTOKENR(value) (__bridge CFTypeRef)[NTSpeechGrammarToken token:NSSTRINGT value]
+#define NTTOKENT (__bridge NTSpeechGrammarToken *)
+
+#define NTALTR(value) (__bridge CFTypeRef)value
+#define NTALTT (__bridge NTSpeechGrammarAlternative *)
+
+#define NTSEQR(value) (__bridge CFTypeRef)value
+#define NTSEQT (__bridge NTSpeechGrammarSequence *)
+
+#define NTRULER(value) (__bridge CFTypeRef)[NTSpeechGrammarRule ruleWithName:NSSTRINGT value]
+#define NTRULET (__bridge NTSpeechGrammarRule *)
+
+#define NELEMENTT (__bridge NTSpeechGrammarElement *)
+
+#define NCONTAINERT (__bridge NTSpeechGrammarElementContainer *)
+
+%}
+
+%parse-param {NTJsgfGrammar *jsgf}
+
+%union {
+    float weight;
+    CFTypeRef name;
+    CFTypeRef element;
+    CFTypeRef rule;
+    CFTypeRef container;
+}
+
+%token              HEADER IMPORT PUBLIC GRAMMAR
+%token <name>       TOKEN RULENAME TAG QUOTEDTOKEN
+%token <weight>     WEIGHT
+%type <element>     base_expansion expansion alternate_expansion
+%type <rule>        rule
+%type <container>   sequence alternate_list
+
+%%
+
+grammar: header body
+;
+
+/*
+ HEADER
+*/
+
+header: jsgf_header grammar_header
+        | jsgf_header grammar_header imports;
+
+jsgf_header: HEADER ';'
+            | HEADER TOKEN ';' {jsgf.version = NSSTRINGT $2;}
+            | HEADER TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2; jsgf.charset = NSSTRINGT $3;}
+            | HEADER TOKEN TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2; jsgf.charset = NSSTRINGT $3; jsgf.language = NSSTRINGT $4;}
+;
+
+grammar_header: GRAMMAR TOKEN ';' {jsgf.name = NSSTRINGT $2;}
+;
+
+imports: import_statement
+        | imports import_statement
+;
+
+import_statement: IMPORT RULENAME ';' {
+    NSString *rulename = NSSTRINGT $2;
+    rulename = [rulename substringWithRange:NSMakeRange(1, rulename.length - 2)];
+};
+
+/*
+ BODY
+ */
+
+body: rule_list
+;
+
+rule_list: rule {[jsgf addRule:(NTRULET $1)];}
+            | rule_list rule {[jsgf addRule:(NTRULET $2)];}
+;
+
+/* RULE */
+rule:
+
+RULENAME '=' expansion ';' {
+    NSString *rulename = NSSTRINGT $1;
+    rulename = [rulename substringWithRange:NSMakeRange(1, rulename.length - 2)];
+    $$ = NTR([NTSpeechGrammarRule ruleWithName:rulename root:(NELEMENTT $3)]);
+}|
+PUBLIC RULENAME '=' expansion ';' {
+    NSString *rulename = NSSTRINGT $2;
+    rulename = [rulename substringWithRange:NSMakeRange(1, rulename.length - 2)];
+    $$ = NTR([NTSpeechGrammarRule publicRuleWithName:rulename root:(NELEMENTT $4)]);
+};
+
+/* EXPANSION */
+expansion:
+base_expansion {$$ = $1;}
+| alternate_expansion {$$ = $1;}
+| alternate_list {$$ = $1;}
+;
+
+alternate_expansion: base_expansion {$$ = $1;}
+| sequence {$$ = $1;
+}|
+WEIGHT base_expansion {
+    $$ = $2;
+    (NELEMENTT $$).weight = $1;
+}|
+WEIGHT sequence {
+    $$ = $2;
+    (NELEMENTT $$).weight = $1;
+};
+
+base_expansion:
+
+TOKEN  {$$ = NTTOKENR $1;}|
+QUOTEDTOKEN  {
+    NSString *value = NSSTRINGT $1;
+    value = [value substringWithRange:NSMakeRange(1, value.length - 2)];
+    $$ = NTR([NTSpeechGrammarToken token:value]);
+}|
+'(' expansion ')' { $$ = NTR([NTSpeechGrammarGroup groupWithRoot:(NELEMENTT $2)]); }|
+'[' expansion ']' { $$ = NTR([NTSpeechGrammarGroup optionalGroupWithRoot:(NELEMENTT $2)]); }|
+RULENAME {
+    NSString *rulename = NSSTRINGT $1;
+    rulename = [rulename substringWithRange:NSMakeRange(1, rulename.length - 2)];
+    $$ = NTR([NTSpeechGrammarRuleReference referenceWithRuleName:rulename]);
+}|
+base_expansion '*' { (NELEMENTT $$).repeatMode = REPEAT_ZERO_OR_MORE; }|
+base_expansion '+' { (NELEMENTT $$).repeatMode = REPEAT_ONE_OR_MORE; };
+
+/* SEQUENCE */
+sequence:
+
+base_expansion {
+    NTSpeechGrammarSequence *seq = [NTSpeechGrammarSequence new];
+    [seq addElement:(NELEMENTT $1)];
+    $$ = NTR(seq);
+}|
+base_expansion sequence{
+    NTSpeechGrammarSequence *seq = NTSEQT $2;
+    [seq addFrontElement:(NELEMENTT $1)];
+    $$ = NTR(seq);
+};
+
+/* ALTERNATIVE */
+alternate_list:
+alternate_expansion{
+    NTSpeechGrammarAlternative *alt = [NTSpeechGrammarAlternative new];
+    [alt addElement:(NELEMENTT $1)];
+    $$ = NTR(alt);
+}|
+alternate_expansion '|' alternate_list{
+    NTSpeechGrammarAlternative *alt = NTALTT $3;
+    [alt addFrontElement:(NELEMENTT $1)];
+    $$ = NTR(alt);
+};
+
+%%
+
+void yyerror(NTJsgfGrammar *jsgf, char *s)
+{
+    NSLog(@"Error %s:", s);
+}
