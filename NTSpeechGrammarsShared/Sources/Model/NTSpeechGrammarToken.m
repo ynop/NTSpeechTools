@@ -17,7 +17,11 @@
 
 - (instancetype)initWithValue:(NSString*)value
 {
-    return [self initWithValue:value weight:-1.0f];
+    self = [super init];
+    if (self) {
+        _value = value;
+    }
+    return self;
 }
 
 - (instancetype)initWithValue:(NSString*)value weight:(int)weight

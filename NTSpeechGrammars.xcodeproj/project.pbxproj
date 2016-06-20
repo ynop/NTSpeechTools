@@ -8,9 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A994730F1D13F12900605476 /* NTSpeechGrammars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D6BA4D1D13D93400CC8466 /* NTSpeechGrammars.framework */; };
-		A99473181D13F16300605476 /* NTJsgfGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473171D13F16300605476 /* NTJsgfGrammarTest.m */; };
 		A994731A1D13F20300605476 /* test_grammar.jsgf in Resources */ = {isa = PBXBuildFile; fileRef = A99473191D13F20300605476 /* test_grammar.jsgf */; };
 		A994731D1D140FE200605476 /* NTJsgfParser.ym in Sources */ = {isa = PBXBuildFile; fileRef = A9D6BA9C1D13DA5D00CC8466 /* NTJsgfParser.ym */; };
+		A99473351D181F3300605476 /* NTJsgfGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473291D181F3300605476 /* NTJsgfGrammarTest.m */; };
+		A99473371D181F3300605476 /* NTSpeechGrammarAlternativeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A994732C1D181F3300605476 /* NTSpeechGrammarAlternativeTest.m */; };
+		A99473381D181F3300605476 /* NTSpeechGrammarElementContainerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A994732D1D181F3300605476 /* NTSpeechGrammarElementContainerTest.m */; };
+		A99473391D181F3300605476 /* NTSpeechGrammarElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A994732E1D181F3300605476 /* NTSpeechGrammarElementTest.m */; };
+		A994733A1D181F3300605476 /* NTSpeechGrammarGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A994732F1D181F3300605476 /* NTSpeechGrammarGroupTest.m */; };
+		A994733B1D181F3300605476 /* NTSpeechGrammarRuleReferenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473301D181F3300605476 /* NTSpeechGrammarRuleReferenceTest.m */; };
+		A994733C1D181F3300605476 /* NTSpeechGrammarRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473311D181F3300605476 /* NTSpeechGrammarRuleTest.m */; };
+		A994733D1D181F3300605476 /* NTSpeechGrammarSequenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473321D181F3300605476 /* NTSpeechGrammarSequenceTest.m */; };
+		A994733E1D181F3300605476 /* NTSpeechGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473331D181F3300605476 /* NTSpeechGrammarTest.m */; };
+		A994733F1D181F3300605476 /* NTSpeechGrammarTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A99473341D181F3300605476 /* NTSpeechGrammarTokenTest.m */; };
 		A9D6BA971D13D9F800CC8466 /* NTSpeechGrammars.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D6BA961D13D9F800CC8466 /* NTSpeechGrammars.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9D6BAB01D13DA5D00CC8466 /* NTJsgfGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D6BA991D13DA5D00CC8466 /* NTJsgfGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9D6BAB11D13DA5D00CC8466 /* NTJsgfGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6BA9A1D13DA5D00CC8466 /* NTJsgfGrammar.m */; };
@@ -72,8 +81,17 @@
 		A962FFBD1D13DB9700A1A2BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A994730A1D13F12900605476 /* NTSpeechGrammarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NTSpeechGrammarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A994730E1D13F12900605476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A99473171D13F16300605476 /* NTJsgfGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTJsgfGrammarTest.m; sourceTree = "<group>"; };
 		A99473191D13F20300605476 /* test_grammar.jsgf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_grammar.jsgf; sourceTree = "<group>"; };
+		A99473291D181F3300605476 /* NTJsgfGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTJsgfGrammarTest.m; sourceTree = "<group>"; };
+		A994732C1D181F3300605476 /* NTSpeechGrammarAlternativeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarAlternativeTest.m; sourceTree = "<group>"; };
+		A994732D1D181F3300605476 /* NTSpeechGrammarElementContainerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarElementContainerTest.m; sourceTree = "<group>"; };
+		A994732E1D181F3300605476 /* NTSpeechGrammarElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarElementTest.m; sourceTree = "<group>"; };
+		A994732F1D181F3300605476 /* NTSpeechGrammarGroupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarGroupTest.m; sourceTree = "<group>"; };
+		A99473301D181F3300605476 /* NTSpeechGrammarRuleReferenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarRuleReferenceTest.m; sourceTree = "<group>"; };
+		A99473311D181F3300605476 /* NTSpeechGrammarRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarRuleTest.m; sourceTree = "<group>"; };
+		A99473321D181F3300605476 /* NTSpeechGrammarSequenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarSequenceTest.m; sourceTree = "<group>"; };
+		A99473331D181F3300605476 /* NTSpeechGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarTest.m; sourceTree = "<group>"; };
+		A99473341D181F3300605476 /* NTSpeechGrammarTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammarTokenTest.m; sourceTree = "<group>"; };
 		A9D6BA4D1D13D93400CC8466 /* NTSpeechGrammars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NTSpeechGrammars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D6BA5D1D13D94B00CC8466 /* NTSpeechGrammars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NTSpeechGrammars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D6BA611D13D94B00CC8466 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,9 +176,34 @@
 		A99473161D13F14700605476 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A99473171D13F16300605476 /* NTJsgfGrammarTest.m */,
+				A994732A1D181F3300605476 /* Model */,
+				A99473281D181F3300605476 /* Jsgf */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		A99473281D181F3300605476 /* Jsgf */ = {
+			isa = PBXGroup;
+			children = (
+				A99473291D181F3300605476 /* NTJsgfGrammarTest.m */,
+			);
+			path = Jsgf;
+			sourceTree = "<group>";
+		};
+		A994732A1D181F3300605476 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A994732C1D181F3300605476 /* NTSpeechGrammarAlternativeTest.m */,
+				A994732D1D181F3300605476 /* NTSpeechGrammarElementContainerTest.m */,
+				A994732E1D181F3300605476 /* NTSpeechGrammarElementTest.m */,
+				A994732F1D181F3300605476 /* NTSpeechGrammarGroupTest.m */,
+				A99473301D181F3300605476 /* NTSpeechGrammarRuleReferenceTest.m */,
+				A99473311D181F3300605476 /* NTSpeechGrammarRuleTest.m */,
+				A99473321D181F3300605476 /* NTSpeechGrammarSequenceTest.m */,
+				A99473331D181F3300605476 /* NTSpeechGrammarTest.m */,
+				A99473341D181F3300605476 /* NTSpeechGrammarTokenTest.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A9D6BA431D13D93400CC8466 = {
@@ -205,9 +248,9 @@
 		A9D6BA671D13D9E700CC8466 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A9D6BA961D13D9F800CC8466 /* NTSpeechGrammars.h */,
 				A9D6BA9D1D13DA5D00CC8466 /* Model */,
 				A9D6BA981D13DA5D00CC8466 /* Jsgf */,
-				A9D6BA961D13D9F800CC8466 /* NTSpeechGrammars.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -413,7 +456,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A99473181D13F16300605476 /* NTJsgfGrammarTest.m in Sources */,
+				A99473351D181F3300605476 /* NTJsgfGrammarTest.m in Sources */,
+				A994733B1D181F3300605476 /* NTSpeechGrammarRuleReferenceTest.m in Sources */,
+				A994733A1D181F3300605476 /* NTSpeechGrammarGroupTest.m in Sources */,
+				A994733F1D181F3300605476 /* NTSpeechGrammarTokenTest.m in Sources */,
+				A99473371D181F3300605476 /* NTSpeechGrammarAlternativeTest.m in Sources */,
+				A99473391D181F3300605476 /* NTSpeechGrammarElementTest.m in Sources */,
+				A994733E1D181F3300605476 /* NTSpeechGrammarTest.m in Sources */,
+				A994733C1D181F3300605476 /* NTSpeechGrammarRuleTest.m in Sources */,
+				A994733D1D181F3300605476 /* NTSpeechGrammarSequenceTest.m in Sources */,
+				A99473381D181F3300605476 /* NTSpeechGrammarElementContainerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

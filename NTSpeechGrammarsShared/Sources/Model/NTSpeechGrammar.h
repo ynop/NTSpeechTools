@@ -19,11 +19,14 @@
 @interface NTSpeechGrammar : NSObject
 
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* version;
+@property (nonatomic, strong) NSString* language;
 @property (nonatomic, strong, readonly) NSArray* rules;
 @property (nonatomic, strong) NTSpeechGrammarRule* rootRule;
 
 - (instancetype)initWithRootRule:(NTSpeechGrammarRule*)rule;
 
+#pragma mark - Rules
 - (void)addRule:(NTSpeechGrammarRule*)rule;
 
 - (void)removeRule:(NTSpeechGrammarRule*)rule;
@@ -32,9 +35,8 @@
 
 - (BOOL)containsRuleWithName:(NSString*)name;
 
-- (NSString*)serialize;
-
-- (void)writeToFileAtPath:(NSString*)path;
+#pragma mark - Convenience Constructors
++ (NTSpeechGrammar*)grammarWithName:(NSString*)name;
 
 + (NTSpeechGrammar*)grammarWithRootRule:(NTSpeechGrammarRule*)rule;
 

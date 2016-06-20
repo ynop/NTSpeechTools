@@ -29,11 +29,10 @@
 
 - (void)testParsing
 {
-    NTJsgfGrammar* grammar = [NTJsgfGrammar jsgfGrammarFromFile:[[NSBundle bundleForClass:self.class] pathForResource:@"test_grammar" ofType:@"jsgf"]];
+    NTSpeechGrammar* grammar = [NTJsgfGrammar grammarFromFileAtPath:[[NSBundle bundleForClass:self.class] pathForResource:@"test_grammar" ofType:@"jsgf"]];
 
     //HEADER
     XCTAssertEqualObjects(@"V1.0", grammar.version);
-    XCTAssertEqualObjects(@"ISO8859-1", grammar.charset);
     XCTAssertEqualObjects(@"en", grammar.language);
     XCTAssertEqualObjects(@"com.acme.commands", grammar.name);
 
@@ -183,6 +182,103 @@
     NTSpeechGrammarToken* token = [self assertObject:obj isTokenWithName:name];
     XCTAssertEqual(weight, token.weight);
     return token;
+}
+
+- (void)testSerialize
+{
+    NTSpeechGrammarAlternative* endPoliteAlternative = [NTSpeechGrammarAlternative alternativeWithElements:@[
+        @"please",
+        @"thanks",
+        [NTSpeechGrammarSequence sequenceWithTokens:@[ @"thank", @"you" ]]
+    ]];
+
+    NTSpeechGrammarRule* endPoliteRule = [NTSpeechGrammarRule ruleWithName:@"endPolite" root:[NTSpeechGrammarGroup optionalGroupWithRoot:endPoliteAlternative]];
+
+    NTSpeechGrammarAlternative* startPoliteAlternative = [NTSpeechGrammarAlternative alternativeWithElements:@[
+        @"please",
+        @"kindly",
+        [NTSpeechGrammarSequence sequenceWithTokens:@[ @"could", @"you" ]],
+        [NTSpeechGrammarSequence sequenceWithTokens:@[ @"oh", @"mighty", @"computer" ]]
+    ]];
+
+    NTSpeechGrammarGroup* startPoliteGroup = [NTSpeechGrammarGroup groupWithRoot:startPoliteAlternative];
+    startPoliteGroup.repeatMode = REPEAT_ZERO_OR_MORE;
+
+    NTSpeechGrammarRule* startPoliteRule = [NTSpeechGrammarRule ruleWithName:@"startPolite" root:startPoliteGroup];
+
+    NTSpeechGrammarSequence* objectSequence = [NTSpeechGrammarSequence sequenceWithElements:@[
+        [NTSpeechGrammarGroup optionalGroupWithRoot:[NTSpeechGrammarAlternative alternativeWithElements:@[
+                                  @"the",
+                                  @"a"
+                              ]]],
+        [NTSpeechGrammarGroup groupWithRoot:[NTSpeechGrammarAlternative alternativeWithElements:@[
+                                  @"window",
+                                  @"file",
+                                  @"menu"
+                              ]]]
+
+    ]];
+
+    NTSpeechGrammarRule* objectRule = [NTSpeechGrammarRule ruleWithName:@"object" root:objectSequence];
+
+    NTSpeechGrammarAlternative* actionAlt = [NTSpeechGrammarAlternative alternativeWithElements:@[
+        [NTSpeechGrammarToken token:@"open"
+                             weight:10],
+        [NTSpeechGrammarToken token:@"close"
+                             weight:2],
+        [NTSpeechGrammarToken token:@"delete"
+                             weight:1],
+        [NTSpeechGrammarToken token:@"move"
+                             weight:1]
+    ]];
+
+    NTSpeechGrammarRule* actionRule = [NTSpeechGrammarRule ruleWithName:@"action" root:actionAlt];
+
+    NTSpeechGrammarRule* commandRule = [NTSpeechGrammarRule ruleWithName:@"command"
+                                                                    root:[NTSpeechGrammarSequence sequenceWithElements:@[
+                                                                        [NTSpeechGrammarRuleReference referenceWithRule:actionRule],
+                                                                        [NTSpeechGrammarRuleReference referenceWithRule:objectRule]
+                                                                    ]]];
+
+    NTSpeechGrammarRule* basicCmdRule = [NTSpeechGrammarRule ruleWithName:@"basicCmd"
+                                                                     root:[NTSpeechGrammarSequence sequenceWithElements:@[
+                                                                         [NTSpeechGrammarRuleReference referenceWithRule:startPoliteRule],
+                                                                         [NTSpeechGrammarRuleReference referenceWithRule:commandRule],
+                                                                         [NTSpeechGrammarRuleReference referenceWithRule:endPoliteRule]
+                                                                     ]]];
+
+    basicCmdRule.scope = RULE_SCOPE_PUBLIC;
+
+    NTSpeechGrammar* grammar = [NTSpeechGrammar grammarWithRootRule:basicCmdRule];
+    grammar.version = @"V1.0";
+    grammar.name = @"grammarname";
+    
+    [grammar addRule:commandRule];
+    [grammar addRule:actionRule];
+    [grammar addRule:objectRule];
+    [grammar addRule:startPoliteRule];
+    [grammar addRule:endPoliteRule];
+
+    NSString* grammarString = @"#JSGF V1.0 ISO8859-1;\
+    grammar grammarname;\
+    public <basicCmd> = <startPolite> <command> <endPolite>; \
+    <command> = <action> <object>; \
+    <action> = /10/ open |/2/ close |/1/ delete |/1/ move; \
+    <object> = [the | a] (window | file | menu); \
+    <startPolite> = (please | kindly | could you | oh mighty computer) *; \
+    <endPolite> = [ please | thanks | thank you ];";
+
+    NSString* result = [NTJsgfGrammar serializeGrammar:grammar];
+
+    NSArray* expectedSplit = [grammarString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    NSString* expected = [expectedSplit componentsJoinedByString:@""];
+
+    NSArray* actualSplit = [result componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    NSString* actual = [actualSplit componentsJoinedByString:@""];
+
+    XCTAssertEqualObjects(expected, actual);
 }
 
 @end

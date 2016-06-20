@@ -1,10 +1,10 @@
 %{
 
 #import <Foundation/Foundation.h>
-#import "NTJsgfGrammar.h"
+#import "NTSpeechGrammar.h"
 
 int yylex(void);
-void yyerror(NTJsgfGrammar *jsgf, char *s);
+void yyerror(NTSpeechGrammar *jsgf, char *s);
 
 #define NTR(value) (__bridge_retained CFTypeRef)value
 
@@ -29,7 +29,7 @@ void yyerror(NTJsgfGrammar *jsgf, char *s);
 
 %}
 
-%parse-param {NTJsgfGrammar *jsgf}
+%parse-param {NTSpeechGrammar *jsgf}
 
 %union {
     float weight;
@@ -60,8 +60,8 @@ header: jsgf_header grammar_header
 
 jsgf_header: HEADER ';'
             | HEADER TOKEN ';' {jsgf.version = NSSTRINGT $2;}
-            | HEADER TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2; jsgf.charset = NSSTRINGT $3;}
-            | HEADER TOKEN TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2; jsgf.charset = NSSTRINGT $3; jsgf.language = NSSTRINGT $4;}
+            | HEADER TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2;}
+            | HEADER TOKEN TOKEN TOKEN ';' {jsgf.version = NSSTRINGT $2; jsgf.language = NSSTRINGT $4;}
 ;
 
 grammar_header: GRAMMAR TOKEN ';' {jsgf.name = NSSTRINGT $2;}
@@ -167,7 +167,7 @@ alternate_expansion '|' alternate_list{
 
 %%
 
-void yyerror(NTJsgfGrammar *jsgf, char *s)
+void yyerror(NTSpeechGrammar *jsgf, char *s)
 {
     NSLog(@"Error %s:", s);
 }

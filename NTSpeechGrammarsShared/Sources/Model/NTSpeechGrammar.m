@@ -26,6 +26,9 @@
     self = [super init];
     if (self) {
         _rulesInternal = [NSMutableArray array];
+        _name = @"";
+        _language = @"";
+        _version = @"";
 
         if (rule != nil) {
             [_rulesInternal addObject:rule];
@@ -35,6 +38,7 @@
     return self;
 }
 
+#pragma mark - Rules
 - (void)addRule:(NTSpeechGrammarRule*)rule
 {
     if ([self containsRuleWithName:rule.name]) {
@@ -71,23 +75,13 @@
     return [NSArray arrayWithArray:self.rulesInternal];
 }
 
-- (NSString*)serialize
+#pragma mark - Convenience Constructors
++ (NTSpeechGrammar*)grammarWithName:(NSString*)name
 {
-    NSLog(@"Not Implemented.");
+    NTSpeechGrammar* grammar = [NTSpeechGrammar new];
+    grammar.name = name;
 
-    return @"";
-}
-
-- (void)writeToFileAtPath:(NSString*)path
-{
-    NSError* error = nil;
-
-    NSString* dicString = [self serialize];
-    [dicString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-
-    if (error) {
-        NSLog(@"Failed to write grammar to file with reason %@.", error);
-    }
+    return grammar;
 }
 
 + (NTSpeechGrammar*)grammarWithRootRule:(NTSpeechGrammarRule*)rule

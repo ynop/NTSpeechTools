@@ -28,25 +28,40 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
 
 @implementation NTJsgfGrammar
 
-- (NSString*)serialize
+#pragma mark - Serialization
++ (NSString*)serializeGrammar:(NTSpeechGrammar*)grammar
 {
-    NSString* value = @"#JSGF V1.0;\n\n";
+    NSString* value = [NSString stringWithFormat:@"#JSGF %@ ISO8859-1 %@;\n\n", grammar.version, grammar.language];
     NSString* name = @"undefined";
 
-    if (self.name != nil) {
-        name = self.name;
+    if (grammar.name != nil) {
+        name = grammar.name;
     }
 
     value = [value stringByAppendingFormat:@"grammar %@;", name];
 
-    for (NTSpeechGrammarRule* rule in self.rules) {
-        value = [value stringByAppendingFormat:@"\n\n %@", [self serializeRule:rule]];
+    for (NTSpeechGrammarRule* rule in grammar.rules) {
+        value = [value stringByAppendingFormat:@"\n\n %@", [NTJsgfGrammar serializeRule:rule]];
     }
 
     return value;
 }
 
-- (NSString*)serializeRule:(NTSpeechGrammarRule*)rule
++ (BOOL)writeGrammar:(NTSpeechGrammar*)grammar toFileAtPath:(NSString*)path
+{
+    NSError* error = nil;
+
+    NSString* serialized = [NTJsgfGrammar serializeGrammar:grammar];
+    BOOL success = [serialized writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:&error];
+
+    if (!success) {
+        NSLog(@"Error while writing grammar to file at path: %@ (%@)", path, error);
+    }
+
+    return success;
+}
+
++ (NSString*)serializeRule:(NTSpeechGrammarRule*)rule
 {
     NSString* value = @"";
 
@@ -54,29 +69,29 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
         value = [value stringByAppendingString:@"public "];
     }
 
-    value = [value stringByAppendingFormat:@"<%@> = %@;", rule.name, [self serializeGrammarElement:rule.root]];
+    value = [value stringByAppendingFormat:@"<%@> = %@;", rule.name, [NTJsgfGrammar serializeGrammarElement:rule.root]];
 
     return value;
 }
 
-- (NSString*)serializeGrammarElement:(NTSpeechGrammarElement*)element
++ (NSString*)serializeGrammarElement:(NTSpeechGrammarElement*)element
 {
     NSString* value = @"";
 
     if ([element isKindOfClass:[NTSpeechGrammarToken class]]) {
-        value = [self serializeToken:(NTSpeechGrammarToken*)element];
+        value = [NTJsgfGrammar serializeToken:(NTSpeechGrammarToken*)element];
     }
     else if ([element isKindOfClass:[NTSpeechGrammarRuleReference class]]) {
-        value = [self serializeRuleReference:(NTSpeechGrammarRuleReference*)element];
+        value = [NTJsgfGrammar serializeRuleReference:(NTSpeechGrammarRuleReference*)element];
     }
     else if ([element isKindOfClass:[NTSpeechGrammarGroup class]]) {
-        value = [self serializeGroup:(NTSpeechGrammarGroup*)element];
+        value = [NTJsgfGrammar serializeGroup:(NTSpeechGrammarGroup*)element];
     }
     else if ([element isKindOfClass:[NTSpeechGrammarSequence class]]) {
-        value = [self serializeSequence:(NTSpeechGrammarSequence*)element];
+        value = [NTJsgfGrammar serializeSequence:(NTSpeechGrammarSequence*)element];
     }
     else if ([element isKindOfClass:[NTSpeechGrammarAlternative class]]) {
-        value = [self serializeAlternative:(NTSpeechGrammarAlternative*)element];
+        value = [NTJsgfGrammar serializeAlternative:(NTSpeechGrammarAlternative*)element];
     }
 
     if (element.repeatMode == REPEAT_ONE_OR_MORE) {
@@ -94,10 +109,6 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
         }
     }
 
-    if (element.weight >= 0) {
-        value = [NSString stringWithFormat:@"/%g/ %@", element.weight, value];
-    }
-
     if (element.tags.count > 0) {
         for (NSString* tag in element.tags) {
             value = [value stringByAppendingFormat:@" {%@}", tag];
@@ -107,70 +118,81 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
     return value;
 }
 
-- (NSString*)serializeToken:(NTSpeechGrammarToken*)token
++ (NSString*)serializeToken:(NTSpeechGrammarToken*)token
 {
     if ([token.value rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]].location != NSNotFound) {
-        return [NSString stringWithFormat:@"%@", token.value.uppercaseString];
+        return [NSString stringWithFormat:@"%@", token.value];
     }
     else {
-        return token.value.uppercaseString;
+        return token.value;
     }
 }
 
-- (NSString*)serializeRuleReference:(NTSpeechGrammarRuleReference*)reference
++ (NSString*)serializeRuleReference:(NTSpeechGrammarRuleReference*)reference
 {
     return [NSString stringWithFormat:@"<%@>", reference.referencedRuleName];
 }
 
-- (NSString*)serializeGroup:(NTSpeechGrammarGroup*)group
++ (NSString*)serializeGroup:(NTSpeechGrammarGroup*)group
 {
     if (group.isOptional) {
-        return [NSString stringWithFormat:@"[ %@ ]", [self serializeGrammarElement:group.root]];
+        return [NSString stringWithFormat:@"[ %@ ]", [NTJsgfGrammar serializeGrammarElement:group.root]];
     }
     else {
-        return [NSString stringWithFormat:@"( %@ )", [self serializeGrammarElement:group.root]];
+        return [NSString stringWithFormat:@"( %@ )", [NTJsgfGrammar serializeGrammarElement:group.root]];
     }
 }
 
-- (NSString*)serializeSequence:(NTSpeechGrammarSequence*)sequence
++ (NSString*)serializeSequence:(NTSpeechGrammarSequence*)sequence
 {
     NSMutableArray* elements = [NSMutableArray array];
 
     for (NTSpeechGrammarElement* el in sequence.elements) {
         if ([el isKindOfClass:[NTSpeechGrammarAlternative class]]) {
-            [elements addObject:[NSString stringWithFormat:@"(%@)", [self serializeGrammarElement:el]]];
+            [elements addObject:[NSString stringWithFormat:@"(%@)", [NTJsgfGrammar serializeGrammarElement:el]]];
         }
         else {
-            [elements addObject:[self serializeGrammarElement:el]];
+            [elements addObject:[NTJsgfGrammar serializeGrammarElement:el]];
         }
     }
 
     return [elements componentsJoinedByString:@" "];
 }
 
-- (NSString*)serializeAlternative:(NTSpeechGrammarAlternative*)alternative
++ (NSString*)serializeAlternative:(NTSpeechGrammarAlternative*)alternative
 {
     NSMutableArray* elements = [NSMutableArray array];
 
+    BOOL weightsNeeded = NO;
+    float weight = ((NTSpeechGrammarElement*)alternative.elements[0]).weight;
+
+    for (int i = 1; i < alternative.elements.count; i++) {
+        if (((NTSpeechGrammarElement*)alternative.elements[i]).weight != weight) {
+            weightsNeeded = YES;
+        }
+    }
+
     for (NTSpeechGrammarElement* el in alternative.elements) {
-        [elements addObject:[self serializeGrammarElement:el]];
+        NSString* serialized = [NTJsgfGrammar serializeGrammarElement:el];
+
+        if (weightsNeeded) {
+            serialized = [NSString stringWithFormat:@"/%g/ %@", el.weight, serialized];
+        }
+
+        [elements addObject:serialized];
     }
 
     return [elements componentsJoinedByString:@" | "];
 }
 
-+ (NTJsgfGrammar*)jsgfGrammarWithRootRule:(NTSpeechGrammarRule*)rule
-{
-    return [[NTJsgfGrammar alloc] initWithRootRule:rule];
-}
-
-+ (NTJsgfGrammar*)jsgfGrammarFromString:(NSString*)value
+#pragma mark - Parsing
++ (NTSpeechGrammar*)grammarFromString:(NSString*)value
 {
     YY_BUFFER_STATE buf;
 
     buf = yy_scan_string([value cStringUsingEncoding:NSUTF8StringEncoding]);
 
-    NTJsgfGrammar* grammar = [[NTJsgfGrammar alloc] init];
+    NTSpeechGrammar* grammar = [[NTSpeechGrammar alloc] init];
 
     int failed = yyparse(grammar);
 
@@ -186,7 +208,7 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
     }
 }
 
-+ (NTJsgfGrammar*)jsgfGrammarFromFile:(NSString*)path
++ (NTSpeechGrammar*)grammarFromFileAtPath:(NSString*)path
 {
     NSError* error = nil;
 
@@ -197,7 +219,7 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
         return nil;
     }
     else {
-        return [NTJsgfGrammar jsgfGrammarFromString:content];
+        return [NTJsgfGrammar grammarFromString:content];
     }
 }
 

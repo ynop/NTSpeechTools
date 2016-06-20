@@ -6,20 +6,18 @@
 //  Copyright © 2016 ZHAW Institute of Applied Information Technology. All rights reserved.
 //
 
-#import "Foundation/Foundation.h"
-
 #import "NTSpeechGrammar.h"
 
-@interface NTJsgfGrammar : NTSpeechGrammar
+@interface NTJsgfGrammar : NSObject
 
-@property (nonatomic, strong) NSString* version;
-@property (nonatomic, strong) NSString* charset;
-@property (nonatomic, strong) NSString* language;
+#pragma mark - Serialization
++ (NSString*)serializeGrammar:(NTSpeechGrammar*)grammar;
 
-+ (NTJsgfGrammar*)jsgfGrammarWithRootRule:(NTSpeechGrammarRule*)rule;
++ (BOOL)writeGrammar:(NTSpeechGrammar*)grammar toFileAtPath:(NSString*)path;
 
-+ (NTJsgfGrammar*)jsgfGrammarFromString:(NSString*)value;
+#pragma mark - Parsing
++ (NTSpeechGrammar*)grammarFromString:(NSString*)value;
 
-+ (NTJsgfGrammar*)jsgfGrammarFromFile:(NSString*)path;
++ (NTSpeechGrammar*)grammarFromFileAtPath:(NSString*)path;
 
 @end

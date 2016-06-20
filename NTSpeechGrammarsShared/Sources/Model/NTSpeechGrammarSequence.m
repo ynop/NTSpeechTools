@@ -11,11 +11,6 @@
 
 @implementation NTSpeechGrammarSequence
 
-- (void)dealloc
-{
-    NSLog(@"DEALLOC SEQ %@", self);
-}
-
 + (NTSpeechGrammarSequence*)sequenceWithElements:(NSArray*)elements
 {
     return [[NTSpeechGrammarSequence alloc] initWithElements:elements];
