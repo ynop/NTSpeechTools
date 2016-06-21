@@ -1,10 +1,11 @@
-# NTSpeechGrammars 
+# NTSpeechTools 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Carthage/Carthage/master/LICENSE.md)   
 
 
-**NTSpeechGrammars** is a Objective-C Library for working with speech recognition grammars on iOS and OSX.
+**NTSpeechTools** is a Objective-C Library providing tools for working with speech recognition on iOS and OSX.
 
 ## Features
+* Pronunciation Dictionary
 * Datastructures to dynamically work on grammars
 * Parse and serialize [JSGF](http://www.w3.org/TR/jsgf/#16562) 
 
@@ -15,9 +16,9 @@
 * Import
 
 ```objc
-@import NTSpeechGrammars;
+@import NTSpeechTools;
 // or
-#import <NTSpeechGrammars/NTSpeechGrammars.h>
+#import <NTSpeechTools/NTSpeechTools.h>
 ```
 
 ## Grammar Datastructure
@@ -25,7 +26,25 @@
 
 ## Usage
 
-### Creating a grammar
+### Phonetic Dictionary
+```objc
+// Create a dictionary
+NTPronunciationDictionary* dic = [NTPronunciationDictionary new];
+
+// Add single word
+[dic addWord:@"Flight" phones:@"F L AY T"];
+
+// Add words from dictionary
+[dic addWords:@{
+    @"Flight" : @[ @"F L AY T", @"F L eY T" ],
+    @"AC" : @[ @"EY S IY" ]
+}];
+
+//Get pronunciations for a word
+NSArray* phoneList = [dic phonesForWord:@"flight"];
+```
+
+### Grammar
 
 The grammar we want to create:
 ```
