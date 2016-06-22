@@ -8,6 +8,7 @@
 * Pronunciation Dictionary
 * Datastructures to dynamically work on grammars
 * Parse and serialize [JSGF](http://www.w3.org/TR/jsgf/#16562) 
+* Searches (A search is used to represent a method a engine uses to recognize speech e.g. Grammar, KWS, NGram)
 
 ## How to get started
 * Install
@@ -107,4 +108,22 @@ BOOL success = [NTJsgfGrammar writeGrammar:grammar toFileAtPath:@"/path/to/gramm
 
 // Serialize to string
 NSString *serialized = [NTJsgfGrammar serializeGrammar:grammar];
+```
+
+### Searches
+
+```objc
+// Keyword spotting
+NTKeywordSpottingSearch *kws = [NTKeywordSpottingSearch searchWithName:@"kws" keyword:@"jarvis"];
+
+// Grammar
+NTSpeechGrammar *grammar = [NTJsgfGrammar grammarFromFileAtPath:@"/path/to/grammar.jsgf"];
+NTGrammarSearch *grammarSearch = [NTGrammarSearch searchWithName:@"grammar" grammar:grammar];
+
+// JSGF
+NTJsgfFileSearch *jsgfSearch = [NTJsgfFileSearch searchWithName:@"jsgf" path:@"path/to/grammar.jsgf"];
+
+// N-Gram
+NTNGramFileSearch *ngramSearch = [NTNGramFileSearch searchWithName:@"ngram" path:@"path/to/ngram.lm"];
+
 ```
