@@ -72,4 +72,37 @@
     return copy;
 }
 
+#pragma mark - Convenience Constructors
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keyword:(NSString*)keyword
+{
+    NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
+    [kws addKeyword:keyword];
+
+    return kws;
+}
+
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keyword:(NSString*)keyword threshold:(double)threshold
+{
+    NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
+    [kws addKeyword:keyword withThreshold:threshold];
+
+    return kws;
+}
+
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keywords:(NSArray<NSString*>*)keywords
+{
+    NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
+    [kws addKeywords:keywords];
+
+    return kws;
+}
+
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keywordsAndThresholds:(NSDictionary<NSString*, NSNumber*>*)keywords
+{
+    NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
+    [kws addKeywordsFromDictionary:keywords];
+
+    return kws;
+}
+
 @end

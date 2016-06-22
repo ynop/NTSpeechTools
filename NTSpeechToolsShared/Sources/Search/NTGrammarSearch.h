@@ -29,4 +29,15 @@
  */
 - (instancetype)initWithName:(NSString*)name grammar:(NTSpeechGrammar*)grammar;
 
+#pragma mark - Convencience Constructors
+/*!
+ *  Create a search with a grammar.
+ *
+ *  @param name    Name
+ *  @param grammar Grammar
+ *
+ *  @return instance
+ */
++ (NTGrammarSearch*)searchWithName:(NSString*)name grammar:(NTSpeechGrammar*)grammar;
+
 @end

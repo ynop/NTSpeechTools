@@ -33,4 +33,10 @@
     return copy;
 }
 
+#pragma mark - Convencience Constructors
++ (NTNGramFileSearch*)searchWithName:(NSString*)name path:(NSString*)path
+{
+    return [[NTNGramFileSearch alloc] initWithName:name path:path];
+}
+
 @end

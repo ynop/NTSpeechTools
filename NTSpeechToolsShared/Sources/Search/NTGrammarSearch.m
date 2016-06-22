@@ -34,4 +34,10 @@
     return copy;
 }
 
+#pragma mark - Convencience Constructors
++ (NTGrammarSearch*)searchWithName:(NSString*)name grammar:(NTSpeechGrammar*)grammar
+{
+    return [[NTGrammarSearch alloc] initWithName:name grammar:grammar];
+}
+
 @end

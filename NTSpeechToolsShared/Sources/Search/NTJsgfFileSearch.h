@@ -28,4 +28,15 @@
  */
 - (instancetype)initWithName:(NSString*)name path:(NSString*)path;
 
+#pragma mark - Convencience Constructors
+/*!
+ *  Create a search with a jsgf file.
+ *
+ *  @param name    Name
+ *  @param path    Path to jsgf file
+ *
+ *  @return instance
+ */
++ (NTJsgfFileSearch*)searchWithName:(NSString*)name path:(NSString*)path;
+
 @end

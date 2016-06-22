@@ -28,4 +28,15 @@
  */
 - (instancetype)initWithName:(NSString*)name path:(NSString*)path;
 
+#pragma mark - Convencience Constructors
+/*!
+ *  Create a search with a ngram file.
+ *
+ *  @param name    Name
+ *  @param path    Path to ngram file
+ *
+ *  @return instance
+ */
++ (NTNGramFileSearch*)searchWithName:(NSString*)name path:(NSString*)path;
+
 @end

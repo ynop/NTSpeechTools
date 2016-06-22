@@ -64,4 +64,42 @@
  */
 - (void)removeKeyword:(NSString*)keyword;
 
+#pragma mark - Convenience Constructors
+/*!
+ *  Create a search with a single keyword.
+ *
+ *  @param keyword Keyword
+ *
+ *  @return instance
+ */
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keyword:(NSString*)keyword;
+
+/*!
+ *  Create a search with a single keyword and a threshold.
+ *
+ *  @param keyword   Keyword
+ *  @param threshold Threshold
+ *
+ *  @return instance
+ */
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keyword:(NSString*)keyword threshold:(double)threshold;
+
+/*!
+ *  Create a search with keywords from an array.
+ *
+ *  @param keywords List of keywords
+ *
+ *  @return instance
+ */
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keywords:(NSArray<NSString*>*)keywords;
+
+/*!
+ *  Create a search with keywords and thresholds from a dictionary.
+ *
+ *  @param keywords Keyword/Threshold pairs
+ *
+ *  @return instance
+ */
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keywordsAndThresholds:(NSDictionary<NSString*, NSNumber*>*)keywords;
+
 @end
