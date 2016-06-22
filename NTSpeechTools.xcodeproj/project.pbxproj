@@ -91,6 +91,10 @@
 		A9F507861D19C7E400498B4E /* NTNGramFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507831D19C7E400498B4E /* NTNGramFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F507871D19C7E400498B4E /* NTNGramFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507841D19C7E400498B4E /* NTNGramFileSearch.m */; };
 		A9F507881D19C7E400498B4E /* NTNGramFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507841D19C7E400498B4E /* NTNGramFileSearch.m */; };
+		A9F508C21D1AADBE00498B4E /* NTHypothesis.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F508C01D1AADBE00498B4E /* NTHypothesis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F508C31D1AADBE00498B4E /* NTHypothesis.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F508C11D1AADBE00498B4E /* NTHypothesis.m */; };
+		A9F508C41D1AADC100498B4E /* NTHypothesis.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F508C11D1AADBE00498B4E /* NTHypothesis.m */; };
+		A9F508C51D1AADC400498B4E /* NTHypothesis.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F508C01D1AADBE00498B4E /* NTHypothesis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,8 @@
 		A9F5077E1D19C78700498B4E /* NTJsgfFileSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTJsgfFileSearch.m; sourceTree = "<group>"; };
 		A9F507831D19C7E400498B4E /* NTNGramFileSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTNGramFileSearch.h; sourceTree = "<group>"; };
 		A9F507841D19C7E400498B4E /* NTNGramFileSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTNGramFileSearch.m; sourceTree = "<group>"; };
+		A9F508C01D1AADBE00498B4E /* NTHypothesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTHypothesis.h; sourceTree = "<group>"; };
+		A9F508C11D1AADBE00498B4E /* NTHypothesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTHypothesis.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +272,7 @@
 				A9F5075D1D199DBB00498B4E /* Dictionary */,
 				A9F507011D199B5400498B4E /* Grammar */,
 				A9F5076A1D19B61200498B4E /* Search */,
+				A9F508BF1D1AADA200498B4E /* Hypothesis */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -382,6 +389,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		A9F508BF1D1AADA200498B4E /* Hypothesis */ = {
+			isa = PBXGroup;
+			children = (
+				A9F508C01D1AADBE00498B4E /* NTHypothesis.h */,
+				A9F508C11D1AADBE00498B4E /* NTHypothesis.m */,
+			);
+			path = Hypothesis;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -391,6 +407,7 @@
 			files = (
 				A9F5072A1D199B5400498B4E /* NTSpeechGrammarElement.h in Headers */,
 				A9F5071A1D199B5400498B4E /* NTJsgfGrammar.h in Headers */,
+				A9F508C21D1AADBE00498B4E /* NTHypothesis.h in Headers */,
 				A9F507611D199E3500498B4E /* NTPronunciationDictionary.h in Headers */,
 				A9F507421D199B5400498B4E /* NTSpeechGrammarToken.h in Headers */,
 				A9F5076D1D19B6CE00498B4E /* NTSpeechSearch.h in Headers */,
@@ -415,6 +432,7 @@
 			files = (
 				A9F5072B1D199B5400498B4E /* NTSpeechGrammarElement.h in Headers */,
 				A9F5071B1D199B5400498B4E /* NTJsgfGrammar.h in Headers */,
+				A9F508C51D1AADC400498B4E /* NTHypothesis.h in Headers */,
 				A9F507621D199E3600498B4E /* NTPronunciationDictionary.h in Headers */,
 				A9F507431D199B5400498B4E /* NTSpeechGrammarToken.h in Headers */,
 				A9F5076E1D19B6CE00498B4E /* NTSpeechSearch.h in Headers */,
@@ -578,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F508C31D1AADBE00498B4E /* NTHypothesis.m in Sources */,
 				A9F507281D199B5400498B4E /* NTSpeechGrammarAlternative.m in Sources */,
 				A9F5073C1D199B5400498B4E /* NTSpeechGrammarRuleReference.m in Sources */,
 				A9F507811D19C78700498B4E /* NTJsgfFileSearch.m in Sources */,
@@ -603,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F508C41D1AADC100498B4E /* NTHypothesis.m in Sources */,
 				A9F507291D199B5400498B4E /* NTSpeechGrammarAlternative.m in Sources */,
 				A9F5073D1D199B5400498B4E /* NTSpeechGrammarRuleReference.m in Sources */,
 				A9F507821D19C78700498B4E /* NTJsgfFileSearch.m in Sources */,

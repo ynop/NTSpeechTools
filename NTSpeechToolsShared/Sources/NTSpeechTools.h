@@ -47,3 +47,8 @@ FOUNDATION_EXPORT const unsigned char NTSpeechToolsVersionString[];
 #import <NTSpeechTools/NTKeywordSpottingSearch.h>
 #import <NTSpeechTools/NTNGramFileSearch.h>
 #import <NTSpeechTools/NTSpeechSearch.h>
+
+// ########################################################################
+// Hypothesis
+// ########################################################################
+#import <NTSpeechTools/NTHypothesis.h>
