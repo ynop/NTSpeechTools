@@ -64,6 +64,33 @@
  */
 - (void)removeKeyword:(NSString*)keyword;
 
+#pragma mark - Serialize/Parse
+/*!
+ *  Saves the keywords into the file at the given path.
+ *
+ *  @param path Path
+ */
+- (void)saveToFileAtPath:(NSString*)path;
+
+/*!
+ *  Add all keywords from the file at the given path.
+ *
+ *  @param path path
+ */
+- (void)addKeywordsFromFileAtPath:(NSString*)path;
+
+/*!
+ *  Parses keywords and optionaly thresholds from file
+ *
+ *  KEYWORD /1e-10/
+ *  KEYWORD2 /1e-40/
+ *
+ *  @param path Path
+ *
+ *  @return keyword/threshold pairs
+ */
++ (NSDictionary<NSString*, NSNumber*>*)parseKeywordsFromFileAtPath:(NSString*)path;
+
 #pragma mark - Convenience Constructors
 /*!
  *  Create a search with a single keyword.
@@ -101,5 +128,12 @@
  *  @return instance
  */
 + (NTKeywordSpottingSearch*)searchWithName:(NSString*)name keywordsAndThresholds:(NSDictionary<NSString*, NSNumber*>*)keywords;
+
+/*!
+ *  Creates a search with the keywords from a file.
+ *
+ *  @param path Path to the file
+ */
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name andKeywordsFromFileAtPath:(NSString*)path;
 
 @end

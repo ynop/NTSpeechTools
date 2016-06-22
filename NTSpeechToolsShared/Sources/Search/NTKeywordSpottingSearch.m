@@ -64,6 +64,72 @@
     return [NSDictionary dictionaryWithDictionary:self.keywordsInternal];
 }
 
+#pragma mark - Serialize/Parse
+- (void)saveToFileAtPath:(NSString*)path
+{
+    NSError* error = nil;
+
+    NSString* content = @"";
+    NSDictionary* keywords = self.keywords;
+
+    for (NSString* keyword in keywords.allKeys) {
+        double threshold = [keywords[keyword] doubleValue];
+
+        content = [content stringByAppendingFormat:@"%@ %.0e", keyword, threshold];
+    }
+
+    [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+
+    if (error) {
+        NSLog(@"Failed to write kws to file at path %@ with error %@.", path, error);
+    }
+}
+
+- (void)addKeywordsFromFileAtPath:(NSString*)path
+{
+    NSDictionary* keywords = [NTKeywordSpottingSearch parseKeywordsFromFileAtPath:path];
+    [self addKeywordsFromDictionary:keywords];
+}
+
++ (NSDictionary<NSString*, NSNumber*>*)parseKeywordsFromString:(NSString*)keywordString
+{
+    NSMutableDictionary* keywords = [NSMutableDictionary dictionary];
+
+    NSArray* lines = [keywordString componentsSeparatedByString:@"\n"];
+
+    for (NSString* line in lines) {
+        NSArray* parts = [line componentsSeparatedByString:@"\\"];
+
+        if (parts.count > 1) {
+            NSString* keyword = parts[0];
+            NSString* thresholdString = parts[1];
+            double threshold = thresholdString.doubleValue;
+
+            keywords[keyword] = @(threshold);
+        }
+        else if (parts.count > 0) {
+            NSString* keyword = parts[0];
+            keywords[keyword] = @(1.0);
+        }
+    }
+
+    return [NSDictionary dictionaryWithDictionary:keywords];
+}
+
++ (NSDictionary<NSString*, NSNumber*>*)parseKeywordsFromFileAtPath:(NSString*)path
+{
+    NSError* error = nil;
+
+    NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+
+    if (error) {
+        NSLog(@"Error while reading contents of KWS File at %@ (%@)", path, error);
+        return @{};
+    }
+
+    return [NTKeywordSpottingSearch parseKeywordsFromString:content];
+}
+
 #pragma mark - NSCopying
 - (id)copyWithZone:(NSZone*)zone
 {
@@ -101,6 +167,14 @@
 {
     NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
     [kws addKeywordsFromDictionary:keywords];
+
+    return kws;
+}
+
++ (NTKeywordSpottingSearch*)searchWithName:(NSString*)name andKeywordsFromFileAtPath:(NSString*)path
+{
+    NTKeywordSpottingSearch* kws = [[NTKeywordSpottingSearch alloc] initWithName:name];
+    [kws addKeywordsFromFileAtPath:path];
 
     return kws;
 }
