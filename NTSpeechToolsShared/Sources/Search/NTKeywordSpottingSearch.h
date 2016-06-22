@@ -1,0 +1,67 @@
+//
+//  NTKeywordSpottingSearch.h
+//  NTSpeechTools
+//
+//  Created by Matthias Büchi on 21/06/16.
+//  Copyright © 2016 ZHAW Institute of Applied Information Technology. All rights reserved.
+//
+
+#import "NTSpeechSearch.h"
+
+/*!
+ *  A search for trying to recognize one of the keywords in a list.
+ */
+@interface NTKeywordSpottingSearch : NTSpeechSearch
+
+/*!
+ *  Keyword / Threshold pairs
+ */
+@property (nonatomic, strong, readonly) NSDictionary<NSString*, NSNumber*>* keywords;
+
+/*!
+ *  Creates new KWS search with the given name and the keywors.
+ *
+ *  @param name     Name
+ *  @param keywords Keyword/Threshold pairs
+ *
+ *  @return instance
+ */
+- (instancetype)initWithName:(NSString*)name keywords:(NSDictionary<NSString*, NSNumber*>*)keywords;
+
+/*!
+ *  Adds a keyword with the default threshold 1. If the keyword already is in the list threshold 1 is set.
+ *
+ *  @param keyword Keyword
+ */
+- (void)addKeyword:(NSString*)keyword;
+
+/*!
+ *  Adds the keyword with the given threshold. If the keyword already is in the list the new threshold is set.
+ *
+ *  @param keyword   Keyword
+ *  @param threshold Threshold
+ */
+- (void)addKeyword:(NSString*)keyword withThreshold:(double)threshold;
+
+/*!
+ *  Add keywords from array with default threshold 1. Same as calling addKeyword for all keywords in the array.
+ *
+ *  @param keywords List of keywords
+ */
+- (void)addKeywords:(NSArray<NSString*>*)keywords;
+
+/*!
+ *  Add keywords with thresholds from dictionary. Same as calling addKeyword:withThreshold for all pairs in the dictionary.
+ *
+ *  @param keywords Keyword/Threshold pairs
+ */
+- (void)addKeywordsFromDictionary:(NSDictionary<NSString*, NSNumber*>*)keywords;
+
+/*!
+ *  Removes the given keyword.
+ *
+ *  @param keyword Keyword to remove
+ */
+- (void)removeKeyword:(NSString*)keyword;
+
+@end

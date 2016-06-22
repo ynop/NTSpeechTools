@@ -38,3 +38,12 @@ FOUNDATION_EXPORT const unsigned char NTSpeechToolsVersionString[];
 
 // JSGF
 #import <NTSpeechTools/NTJsgfGrammar.h>
+
+// ########################################################################
+// SEARCH
+// ########################################################################
+#import <NTSpeechTools/NTGrammarSearch.h>
+#import <NTSpeechTools/NTJsgfFileSearch.h>
+#import <NTSpeechTools/NTKeywordSpottingSearch.h>
+#import <NTSpeechTools/NTNGramFileSearch.h>
+#import <NTSpeechTools/NTSpeechSearch.h>

@@ -30,6 +30,12 @@
 //
 - (void)testAddWordPhonesNonExistingWord
 {
+
+    NSString* t = @"1e-80";
+    NSNumber *number = @([t doubleValue]);
+
+    NSLog(@"%@", number);
+
     NTPronunciationDictionary* dic = [NTPronunciationDictionary new];
 
     [dic addWord:@"Flight" phones:@"F L AY T"];
