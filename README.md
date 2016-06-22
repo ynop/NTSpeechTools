@@ -9,6 +9,7 @@
 * Datastructures to dynamically work on grammars
 * Parse and serialize [JSGF](http://www.w3.org/TR/jsgf/#16562) 
 * Searches (A search is used to represent a method a engine uses to recognize speech e.g. Grammar, KWS, NGram)
+* Hypothesis
 
 ## How to get started
 * Install
