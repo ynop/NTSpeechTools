@@ -13,16 +13,16 @@
 #import "NTSpeechGrammarSequence.h"
 #import "NTSpeechGrammarToken.h"
 
-#import "y.tab.h"
+#import "NTJsgfParser.h"
 
 // Added some extras to suppress warnings...
 #ifndef FLEXINT_H
 
 typedef struct yy_buffer_state* YY_BUFFER_STATE;
-YY_BUFFER_STATE yy_scan_string(const char* s);
+YY_BUFFER_STATE nt_scan_string(const char* s);
 
-float yyparse();
-void yy_delete_buffer(YY_BUFFER_STATE buf);
+float ntparse();
+void nt_delete_buffer(YY_BUFFER_STATE buf);
 
 #endif
 
@@ -190,13 +190,13 @@ void yy_delete_buffer(YY_BUFFER_STATE buf);
 {
     YY_BUFFER_STATE buf;
 
-    buf = yy_scan_string([value cStringUsingEncoding:NSUTF8StringEncoding]);
+    buf = nt_scan_string([value cStringUsingEncoding:NSUTF8StringEncoding]);
 
     NTSpeechGrammar* grammar = [[NTSpeechGrammar alloc] init];
 
-    int failed = yyparse(grammar);
+    int failed = ntparse(grammar);
 
-    yy_delete_buffer(buf);
+    nt_delete_buffer(buf);
 
     if (!failed) {
         return grammar;

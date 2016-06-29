@@ -9,16 +9,20 @@
 /* Begin PBXBuildFile section */
 		A994730F1D13F12900605476 /* NTSpeechTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D6BA4D1D13D93400CC8466 /* NTSpeechTools.framework */; };
 		A994731A1D13F20300605476 /* test_grammar.jsgf in Resources */ = {isa = PBXBuildFile; fileRef = A99473191D13F20300605476 /* test_grammar.jsgf */; };
+		A99C2B601D21C1D0001FA630 /* NTJsgfGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507031D199B5400498B4E /* NTJsgfGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A99C2B611D21C1D0001FA630 /* NTJsgfGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507041D199B5400498B4E /* NTJsgfGrammar.m */; };
+		A99C2B621D21C1D0001FA630 /* NTJsgfLexer.lm in Sources */ = {isa = PBXBuildFile; fileRef = A9F507051D199B5400498B4E /* NTJsgfLexer.lm */; };
+		A99C2B631D21C1D0001FA630 /* NTJsgfParser.ym in Sources */ = {isa = PBXBuildFile; fileRef = A9F507061D199B5400498B4E /* NTJsgfParser.ym */; };
+		A99C2B641D21C1D0001FA630 /* NTJsgfGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507031D199B5400498B4E /* NTJsgfGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A99C2B651D21C1D0001FA630 /* NTJsgfGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507041D199B5400498B4E /* NTJsgfGrammar.m */; };
+		A99C2B661D21C1D0001FA630 /* NTJsgfLexer.lm in Sources */ = {isa = PBXBuildFile; fileRef = A9F507051D199B5400498B4E /* NTJsgfLexer.lm */; };
+		A99C2B671D21C1D0001FA630 /* NTJsgfParser.ym in Sources */ = {isa = PBXBuildFile; fileRef = A9F507061D199B5400498B4E /* NTJsgfParser.ym */; };
+		A99C2B681D21C1DD001FA630 /* NTJsgfFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F5077D1D19C78700498B4E /* NTJsgfFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A99C2B691D21C1DD001FA630 /* NTJsgfFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F5077E1D19C78700498B4E /* NTJsgfFileSearch.m */; };
+		A99C2B6A1D21C1DE001FA630 /* NTJsgfFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F5077D1D19C78700498B4E /* NTJsgfFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A99C2B6B1D21C1DE001FA630 /* NTJsgfFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F5077E1D19C78700498B4E /* NTJsgfFileSearch.m */; };
 		A9D6BA971D13D9F800CC8466 /* NTSpeechTools.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D6BA961D13D9F800CC8466 /* NTSpeechTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9D6BADC1D13DA8400CC8466 /* NTSpeechTools.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D6BA961D13D9F800CC8466 /* NTSpeechTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F5071A1D199B5400498B4E /* NTJsgfGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507031D199B5400498B4E /* NTJsgfGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F5071B1D199B5400498B4E /* NTJsgfGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507031D199B5400498B4E /* NTJsgfGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F5071C1D199B5400498B4E /* NTJsgfGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507041D199B5400498B4E /* NTJsgfGrammar.m */; };
-		A9F5071D1D199B5400498B4E /* NTJsgfGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507041D199B5400498B4E /* NTJsgfGrammar.m */; };
-		A9F5071E1D199B5400498B4E /* NTJsgfLexer.lm in Sources */ = {isa = PBXBuildFile; fileRef = A9F507051D199B5400498B4E /* NTJsgfLexer.lm */; };
-		A9F5071F1D199B5400498B4E /* NTJsgfLexer.lm in Sources */ = {isa = PBXBuildFile; fileRef = A9F507051D199B5400498B4E /* NTJsgfLexer.lm */; };
-		A9F507201D199B5400498B4E /* NTJsgfParser.ym in Sources */ = {isa = PBXBuildFile; fileRef = A9F507061D199B5400498B4E /* NTJsgfParser.ym */; };
-		A9F507211D199B5400498B4E /* NTJsgfParser.ym in Sources */ = {isa = PBXBuildFile; fileRef = A9F507061D199B5400498B4E /* NTJsgfParser.ym */; };
 		A9F507221D199B5400498B4E /* NTSpeechGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507081D199B5400498B4E /* NTSpeechGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F507231D199B5400498B4E /* NTSpeechGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507081D199B5400498B4E /* NTSpeechGrammar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F507241D199B5400498B4E /* NTSpeechGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507091D199B5400498B4E /* NTSpeechGrammar.m */; };
@@ -83,10 +87,6 @@
 		A9F5077A1D19C76C00498B4E /* NTGrammarSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507771D19C76C00498B4E /* NTGrammarSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F5077B1D19C76C00498B4E /* NTGrammarSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507781D19C76C00498B4E /* NTGrammarSearch.m */; };
 		A9F5077C1D19C76C00498B4E /* NTGrammarSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507781D19C76C00498B4E /* NTGrammarSearch.m */; };
-		A9F5077F1D19C78700498B4E /* NTJsgfFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F5077D1D19C78700498B4E /* NTJsgfFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F507801D19C78700498B4E /* NTJsgfFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F5077D1D19C78700498B4E /* NTJsgfFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F507811D19C78700498B4E /* NTJsgfFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F5077E1D19C78700498B4E /* NTJsgfFileSearch.m */; };
-		A9F507821D19C78700498B4E /* NTJsgfFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F5077E1D19C78700498B4E /* NTJsgfFileSearch.m */; };
 		A9F507851D19C7E400498B4E /* NTNGramFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507831D19C7E400498B4E /* NTNGramFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F507861D19C7E400498B4E /* NTNGramFileSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F507831D19C7E400498B4E /* NTNGramFileSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F507871D19C7E400498B4E /* NTNGramFileSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F507841D19C7E400498B4E /* NTNGramFileSearch.m */; };
@@ -96,6 +96,20 @@
 		A9F508C41D1AADC100498B4E /* NTHypothesis.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F508C11D1AADBE00498B4E /* NTHypothesis.m */; };
 		A9F508C51D1AADC400498B4E /* NTHypothesis.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F508C01D1AADBE00498B4E /* NTHypothesis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		A99C2B6E1D226A3A001FA630 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.yacc;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).h",
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).m",
+			);
+			script = "echo ${DERIVED_FILE_DIR}\necho ${INPUT_FILE_PATH}\n\ncd ${DERIVED_FILE_DIR} && yacc -d -p nt ${INPUT_FILE_PATH} && mv y.tab.c ${INPUT_FILE_BASE}.m && mv y.tab.h ${INPUT_FILE_BASE}.h";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		A99473101D13F12900605476 /* PBXContainerItemProxy */ = {
@@ -118,8 +132,8 @@
 		A9D6BA961D13D9F800CC8466 /* NTSpeechTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSpeechTools.h; sourceTree = "<group>"; };
 		A9F507031D199B5400498B4E /* NTJsgfGrammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTJsgfGrammar.h; sourceTree = "<group>"; };
 		A9F507041D199B5400498B4E /* NTJsgfGrammar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTJsgfGrammar.m; sourceTree = "<group>"; };
-		A9F507051D199B5400498B4E /* NTJsgfLexer.lm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = NTJsgfLexer.lm; sourceTree = "<group>"; };
-		A9F507061D199B5400498B4E /* NTJsgfParser.ym */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = NTJsgfParser.ym; sourceTree = "<group>"; };
+		A9F507051D199B5400498B4E /* NTJsgfLexer.lm */ = {isa = PBXFileReference; explicitFileType = sourcecode.lex; fileEncoding = 4; path = NTJsgfLexer.lm; sourceTree = "<group>"; };
+		A9F507061D199B5400498B4E /* NTJsgfParser.ym */ = {isa = PBXFileReference; explicitFileType = sourcecode.yacc; fileEncoding = 4; path = NTJsgfParser.ym; sourceTree = "<group>"; };
 		A9F507081D199B5400498B4E /* NTSpeechGrammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSpeechGrammar.h; sourceTree = "<group>"; };
 		A9F507091D199B5400498B4E /* NTSpeechGrammar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTSpeechGrammar.m; sourceTree = "<group>"; };
 		A9F5070A1D199B5400498B4E /* NTSpeechGrammarAlternative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTSpeechGrammarAlternative.h; sourceTree = "<group>"; };
@@ -406,8 +420,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9F5072A1D199B5400498B4E /* NTSpeechGrammarElement.h in Headers */,
-				A9F5071A1D199B5400498B4E /* NTJsgfGrammar.h in Headers */,
 				A9F508C21D1AADBE00498B4E /* NTHypothesis.h in Headers */,
+				A99C2B6A1D21C1DE001FA630 /* NTJsgfFileSearch.h in Headers */,
 				A9F507611D199E3500498B4E /* NTPronunciationDictionary.h in Headers */,
 				A9F507421D199B5400498B4E /* NTSpeechGrammarToken.h in Headers */,
 				A9F5076D1D19B6CE00498B4E /* NTSpeechSearch.h in Headers */,
@@ -417,7 +431,7 @@
 				A9F5072E1D199B5400498B4E /* NTSpeechGrammarElementContainer.h in Headers */,
 				A9F507731D19B81400498B4E /* NTKeywordSpottingSearch.h in Headers */,
 				A9F507851D19C7E400498B4E /* NTNGramFileSearch.h in Headers */,
-				A9F5077F1D19C78700498B4E /* NTJsgfFileSearch.h in Headers */,
+				A99C2B601D21C1D0001FA630 /* NTJsgfGrammar.h in Headers */,
 				A9F5073E1D199B5400498B4E /* NTSpeechGrammarSequence.h in Headers */,
 				A9F507361D199B5400498B4E /* NTSpeechGrammarRule.h in Headers */,
 				A9F507261D199B5400498B4E /* NTSpeechGrammarAlternative.h in Headers */,
@@ -431,8 +445,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9F5072B1D199B5400498B4E /* NTSpeechGrammarElement.h in Headers */,
-				A9F5071B1D199B5400498B4E /* NTJsgfGrammar.h in Headers */,
 				A9F508C51D1AADC400498B4E /* NTHypothesis.h in Headers */,
+				A99C2B681D21C1DD001FA630 /* NTJsgfFileSearch.h in Headers */,
 				A9F507621D199E3600498B4E /* NTPronunciationDictionary.h in Headers */,
 				A9F507431D199B5400498B4E /* NTSpeechGrammarToken.h in Headers */,
 				A9F5076E1D19B6CE00498B4E /* NTSpeechSearch.h in Headers */,
@@ -442,7 +456,7 @@
 				A9F5072F1D199B5400498B4E /* NTSpeechGrammarElementContainer.h in Headers */,
 				A9F507741D19B81400498B4E /* NTKeywordSpottingSearch.h in Headers */,
 				A9F507861D19C7E400498B4E /* NTNGramFileSearch.h in Headers */,
-				A9F507801D19C78700498B4E /* NTJsgfFileSearch.h in Headers */,
+				A99C2B641D21C1D0001FA630 /* NTJsgfGrammar.h in Headers */,
 				A9F5073F1D199B5400498B4E /* NTSpeechGrammarSequence.h in Headers */,
 				A9F507371D199B5400498B4E /* NTSpeechGrammarRule.h in Headers */,
 				A9F507271D199B5400498B4E /* NTSpeechGrammarAlternative.h in Headers */,
@@ -482,6 +496,7 @@
 				A9D6BA4B1D13D93400CC8466 /* Resources */,
 			);
 			buildRules = (
+				A99C2B6E1D226A3A001FA630 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -599,21 +614,21 @@
 				A9F508C31D1AADBE00498B4E /* NTHypothesis.m in Sources */,
 				A9F507281D199B5400498B4E /* NTSpeechGrammarAlternative.m in Sources */,
 				A9F5073C1D199B5400498B4E /* NTSpeechGrammarRuleReference.m in Sources */,
-				A9F507811D19C78700498B4E /* NTJsgfFileSearch.m in Sources */,
 				A9F507871D19C7E400498B4E /* NTNGramFileSearch.m in Sources */,
-				A9F5071C1D199B5400498B4E /* NTJsgfGrammar.m in Sources */,
 				A9F507401D199B5400498B4E /* NTSpeechGrammarSequence.m in Sources */,
 				A9F5072C1D199B5400498B4E /* NTSpeechGrammarElement.m in Sources */,
 				A9F507241D199B5400498B4E /* NTSpeechGrammar.m in Sources */,
-				A9F5071E1D199B5400498B4E /* NTJsgfLexer.lm in Sources */,
 				A9F507631D199E3D00498B4E /* NTPronunciationDictionary.m in Sources */,
+				A99C2B631D21C1D0001FA630 /* NTJsgfParser.ym in Sources */,
 				A9F507381D199B5400498B4E /* NTSpeechGrammarRule.m in Sources */,
-				A9F507201D199B5400498B4E /* NTJsgfParser.ym in Sources */,
 				A9F507301D199B5400498B4E /* NTSpeechGrammarElementContainer.m in Sources */,
 				A9F5077B1D19C76C00498B4E /* NTGrammarSearch.m in Sources */,
 				A9F507751D19B81400498B4E /* NTKeywordSpottingSearch.m in Sources */,
 				A9F5076F1D19B6CE00498B4E /* NTSpeechSearch.m in Sources */,
+				A99C2B621D21C1D0001FA630 /* NTJsgfLexer.lm in Sources */,
+				A99C2B611D21C1D0001FA630 /* NTJsgfGrammar.m in Sources */,
 				A9F507341D199B5400498B4E /* NTSpeechGrammarGroup.m in Sources */,
+				A99C2B6B1D21C1DE001FA630 /* NTJsgfFileSearch.m in Sources */,
 				A9F507441D199B5400498B4E /* NTSpeechGrammarToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,21 +640,21 @@
 				A9F508C41D1AADC100498B4E /* NTHypothesis.m in Sources */,
 				A9F507291D199B5400498B4E /* NTSpeechGrammarAlternative.m in Sources */,
 				A9F5073D1D199B5400498B4E /* NTSpeechGrammarRuleReference.m in Sources */,
-				A9F507821D19C78700498B4E /* NTJsgfFileSearch.m in Sources */,
 				A9F507881D19C7E400498B4E /* NTNGramFileSearch.m in Sources */,
-				A9F5071D1D199B5400498B4E /* NTJsgfGrammar.m in Sources */,
 				A9F507411D199B5400498B4E /* NTSpeechGrammarSequence.m in Sources */,
 				A9F5072D1D199B5400498B4E /* NTSpeechGrammarElement.m in Sources */,
 				A9F507251D199B5400498B4E /* NTSpeechGrammar.m in Sources */,
-				A9F5071F1D199B5400498B4E /* NTJsgfLexer.lm in Sources */,
 				A9F507641D199E3D00498B4E /* NTPronunciationDictionary.m in Sources */,
+				A99C2B671D21C1D0001FA630 /* NTJsgfParser.ym in Sources */,
 				A9F507391D199B5400498B4E /* NTSpeechGrammarRule.m in Sources */,
-				A9F507211D199B5400498B4E /* NTJsgfParser.ym in Sources */,
 				A9F507311D199B5400498B4E /* NTSpeechGrammarElementContainer.m in Sources */,
 				A9F5077C1D19C76C00498B4E /* NTGrammarSearch.m in Sources */,
 				A9F507761D19B81400498B4E /* NTKeywordSpottingSearch.m in Sources */,
 				A9F507701D19B6CE00498B4E /* NTSpeechSearch.m in Sources */,
+				A99C2B661D21C1D0001FA630 /* NTJsgfLexer.lm in Sources */,
+				A99C2B651D21C1D0001FA630 /* NTJsgfGrammar.m in Sources */,
 				A9F507351D199B5400498B4E /* NTSpeechGrammarGroup.m in Sources */,
+				A99C2B691D21C1DD001FA630 /* NTJsgfFileSearch.m in Sources */,
 				A9F507451D199B5400498B4E /* NTSpeechGrammarToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

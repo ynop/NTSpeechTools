@@ -1,7 +1,7 @@
 %{
     
 #import <Foundation/Foundation.h>
-#import "y.tab.h"
+#import "NTJsgfParser.h"
 
 #define NSSTRINGR(value) (__bridge CFTypeRef)[NSString stringWithFormat:@"%s", value]
 
@@ -10,6 +10,7 @@ CFTypeRef removeFirstAndLast(const char *value);
 
 %}
 
+%option prefix="nt"
 %s COMMENT
 
 whitespace  [ \t\r\n]
@@ -35,12 +36,12 @@ quotedtoken \"(\\.|[^"]+)*\"
 <INITIAL>import {return IMPORT;}
 <INITIAL>public {return PUBLIC;}
 
-<INITIAL>{rulename} {yylval.name=NSSTRINGR(yytext);  return RULENAME;}
+<INITIAL>{rulename} {ntlval.name=NSSTRINGR(yytext);  return RULENAME;}
 
-<INITIAL>{tag} {yylval.name=NSSTRINGR(yytext);  return TAG;}
-<INITIAL>{token} {yylval.name=NSSTRINGR(yytext); return TOKEN;}
-<INITIAL>{quotedtoken} {yylval.name=NSSTRINGR(yytext);  return QUOTEDTOKEN;}
-<INITIAL>{weight} {yylval.weight=atof(yytext+1); return WEIGHT;}
+<INITIAL>{tag} {ntlval.name=NSSTRINGR(yytext);  return TAG;}
+<INITIAL>{token} {ntlval.name=NSSTRINGR(yytext); return TOKEN;}
+<INITIAL>{quotedtoken} {ntlval.name=NSSTRINGR(yytext);  return QUOTEDTOKEN;}
+<INITIAL>{weight} {ntlval.weight=atof(yytext+1); return WEIGHT;}
 
 <INITIAL>.   {return yytext[0];}    /* rest */
 
