@@ -31,6 +31,11 @@
     return self;
 }
 
+- (BOOL)isNull
+{
+    return [self.value isEqualToString:@""];
+}
+
 #pragma mark - Convinience Constructors
 + (NTHypothesis*)hypothesis:(NSString*)value
 {

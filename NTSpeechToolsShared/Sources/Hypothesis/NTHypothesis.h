@@ -31,6 +31,13 @@
 
 - (instancetype)initWithValue:(NSString*)value score:(double)score probability:(double)probability;
 
+/*!
+ *  Whether this is a null hypothesis
+ *
+ *  @return YES if null, NO otherwise
+ */
+- (BOOL)isNull;
+
 #pragma mark - Convinience Constructors
 + (NTHypothesis*)hypothesis:(NSString*)value;
 
