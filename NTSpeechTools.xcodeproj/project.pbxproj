@@ -102,6 +102,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
+		A99656241D2581DC00120D06 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.yacc;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).h",
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).m",
+			);
+			script = "echo ${DERIVED_FILE_DIR}\necho ${INPUT_FILE_PATH}\n\ncd ${DERIVED_FILE_DIR} && yacc -d -p nt ${INPUT_FILE_PATH} && mv y.tab.c ${INPUT_FILE_BASE}.m && mv y.tab.h ${INPUT_FILE_BASE}.h\n";
+		};
 		A99C2B6E1D226A3A001FA630 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
@@ -525,6 +536,7 @@
 				A9D6BA5B1D13D94B00CC8466 /* Resources */,
 			);
 			buildRules = (
+				A99656241D2581DC00120D06 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
