@@ -12,21 +12,27 @@
 * Hypothesis
 
 ## How to get started
-* Install
- * Manually
- * Carthage
-* Import
+
+### Carthage
+You can use carthage to install NTSpeechRecognition by adding to following to your Cartfile:
+
+```
+github "ynop/NTSpeechTools"
+```
+
+### Manual
+You also can add this project as subproject.
+
+## Grammar Datastructure
+![](Documentation/speech_grammar.png)
+
+## Usage
 
 ```objc
 @import NTSpeechTools;
 // or
 #import <NTSpeechTools/NTSpeechTools.h>
 ```
-
-## Grammar Datastructure
-![](Documentation/speech_grammar.png)
-
-## Usage
 
 ### Phonetic Dictionary
 ```objc
