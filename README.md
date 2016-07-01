@@ -1,8 +1,7 @@
 # NTSpeechTools 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](LICENSE)   
 
-
-**NTSpeechTools** is a Objective-C Library providing tools for working with speech recognition on iOS and OSX.
+**NTSpeechTools** is a library providing tools for working with speech recognition on iOS and OSX, written in  Objective-C.
 
 ## Features
 * Pronunciation Dictionary
@@ -23,7 +22,13 @@ github "ynop/NTSpeechTools"
 ### Manual
 You also can add this project as subproject.
 
-## Grammar Datastructure
+## Documentation
+
+### API Reference
+Checkout out [API Reference](https://ynop.github.io/NTSpeechTools/index.html).
+
+### Grammar Datastructure
+This diagram shows the elements and their relations of the grammar data structure. (**NTSpeechGrammar**)
 ![](Documentation/speech_grammar.png)
 
 ## Usage
