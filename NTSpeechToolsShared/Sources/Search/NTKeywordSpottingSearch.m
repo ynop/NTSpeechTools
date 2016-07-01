@@ -23,7 +23,7 @@
 
 - (instancetype)initWithName:(NSString*)name keywords:(NSDictionary*)keywords
 {
-    self = [super init];
+    self = [super initWithName:name];
     if (self) {
         _keywordsInternal = [NSMutableDictionary dictionaryWithDictionary:keywords];
     }
@@ -75,7 +75,7 @@
     for (NSString* keyword in keywords.allKeys) {
         double threshold = [keywords[keyword] doubleValue];
 
-        content = [content stringByAppendingFormat:@"%@ %.0e", keyword, threshold];
+        content = [content stringByAppendingFormat:@"%@ /%.0e/\n", keyword, threshold];
     }
 
     [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -98,7 +98,7 @@
     NSArray* lines = [keywordString componentsSeparatedByString:@"\n"];
 
     for (NSString* line in lines) {
-        NSArray* parts = [line componentsSeparatedByString:@"\\"];
+        NSArray* parts = [line componentsSeparatedByString:@"/"];
 
         if (parts.count > 1) {
             NSString* keyword = parts[0];
